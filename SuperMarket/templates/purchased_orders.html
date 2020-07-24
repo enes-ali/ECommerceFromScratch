@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Orders</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/purchased_orders.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div id="Main">
+
+        <h1>Purchased Orders</h1>
+
+        <div id="orderContainer">
+            <ul id="orderLabelList">
+                <li class="orderLabel" style="background-color: red!important; color: white">Cancel</li>
+                <li class="orderLabel">Image</li>
+                <li class="orderLabel">Product</li>
+                <li class="orderLabel">Shop</li>
+                <li class="orderLabel">Address</li>
+                <li class="orderLabel">Quantity</li>
+                <li class="orderLabel">Total</li>
+                <li class="orderLabel" style="background-color: #18cc9c!important; color: white">Status</li>
+            </ul>
+
+            {% for order in purchased_orders %}
+                <div class="orderCartItem">
+
+                    <a href="{% url 'cancelOrder' id=order.id %}" class="cancelOrder material-icons">cancel</a>
+
+                    <img class="orderCartItemImage" src="{{ order.product.Photo2.url }}" alt="">
+
+                    <p class="orderCartItemName centered">{{ order.product.Name }}</p>
+
+                    <p class="orderCartItemName centered">{{ order.product.Shop.ShopName }}</p>
+
+                    <p class="orderCartItemPrice centered">{{ order.address }}</p>
+
+                    <p class="orderCartItemCount centered">{{ order.count }}</p>
+
+                    <p class="orderCartItemTotalPrice centered"> {{ order.totalPrice }}$ </p>
+
+                    <i class="waitingStatus material-icons"> access_time</i>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <h1>Confirmed Orders</h1>
+
+        <div id="orderContainer">
+            <ul id="confirmedOrderLabelList">
+                <li class="orderLabel">Image</li>
+                <li class="orderLabel">Product</li>
+                <li class="orderLabel">Shop</li>
+                <li class="orderLabel">Address</li>
+                <li class="orderLabel">Quantity</li>
+                <li class="orderLabel">Total</li>
+                <li class="orderLabel" style="background-color: #00cc66!important; color: white">Status</li>
+            </ul>
+
+            {% for order in confirmed_orders %}
+                <div class="confirmedOrderCartItem">
+
+                    <img class="orderCartItemImage" src="{{ order.product.Photo2.url }}" alt="">
+
+                    <p class="orderCartItemName centered">{{ order.product.Name }}</p>
+
+                    <p class="orderCartItemName centered">{{ order.product.Shop.ShopName }}</p>
+
+                    <p class="orderCartItemPrice centered">{{ order.address }}</p>
+
+                    <p class="orderCartItemCount centered">{{ order.count }}</p>
+
+                    <p class="orderCartItemTotalPrice centered"> {{ order.totalPrice }}$ </p>
+
+                    <i href="" class="confirmedStatus material-icons"> done_outline</i>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <h1>Shipping Orders</h1>
+
+        <div id="orderContainer">
+            <ul id="orderLabelList">
+                <li class="orderLabel" style="background-color: red!important; color: white">Cargo Num</li>
+                <li class="orderLabel">Image</li>
+                <li class="orderLabel">Product</li>
+                <li class="orderLabel">Shop</li>
+                <li class="orderLabel">Address</li>
+                <li class="orderLabel">Quantity</li>
+                <li class="orderLabel">Total</li>
+                <li class="orderLabel" style="background-color: #ff6011!important; color: white">Finish</li>
+            </ul>
+
+            {% for order in shipping_orders %}
+                <div class="orderCartItem">
+
+                    <p class="centered">{{ order.cargoNumber }}</p>
+
+                    <img class="orderCartItemImage" src="{{ order.product.Photo2.url }}" alt="">
+
+                    <p class="orderCartItemName centered">{{ order.product.Name }}</p>
+
+                    <p class="orderCartItemName centered">{{ order.product.Shop.ShopName }}</p>
+
+                    <p class="orderCartItemPrice centered">{{ order.address }}</p>
+
+                    <p class="orderCartItemCount centered">{{ order.count }}</p>
+
+                    <p class="orderCartItemTotalPrice centered"> {{ order.totalPrice }}$ </p>
+
+                    <a href="{% url 'finishOrder' id=order.id %}" class="material-icons finishOrder">done_all</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

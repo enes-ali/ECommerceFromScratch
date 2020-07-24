@@ -1,0 +1,416 @@
+/* ############################# Globals ############################# */
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+*:active {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    transition: 0.3s;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #008643;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #004020;
+}
+
+
+/* ############################# Navbar ############################# */
+
+.Navbar {
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    z-index: 1;
+}
+
+.NavbarActive {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 50px;
+}
+
+#Brand {
+    color: rgb(2, 197, 103);
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#NavLinkList {
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+}
+
+.Navlink {
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.Navlink:hover {
+    color: #00cc66;
+}
+
+#ActiveNavlink {
+    background-color: rgba(0, 204, 102, 0.27);
+}
+
+#NavButtonsContainer {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.NavbarButtons {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-radius: 2px;
+    font-size: 17px;
+}
+
+.NavbarButtons:hover {
+    color: rgb(0, 204, 102);
+}
+
+.NavbarButtons > i {
+    font-size: 22px;
+    vertical-align: text-bottom;
+}
+
+#shopCartBadge {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    background-color: red;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    font-size: 13px;
+    color: white;
+    position: relative;
+    left: 30px;
+    top: -12px;
+}
+
+
+/* ############################# Openable Menus ############################# */
+
+.dropdownMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+/*  Shop Cart Menu  */
+.ShopCartMenu {
+    width: 0px;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.ShopCartMenuActive {
+    width: 400px;
+}
+
+#ShopCartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#shopCartTitle {
+    font-size: 20px;
+}
+
+#closeShopCart {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#orderItemContainer {
+    height: 550px;
+    overflow-y: scroll;
+    direction: rtl;
+}
+
+#orderItemContainer::-webkit-scrollbar {
+    width: 10px;
+}
+
+#orderItemContainer::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+#orderItemContainer::-webkit-scrollbar-thumb {
+    background: #f0f1ff;
+}
+
+#orderItemContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.orderItem {
+    width: 90%;
+    height: 80px;
+    border: solid 1px #d4d4d4;
+    margin: 0px auto 10px auto;
+    display: grid;
+    grid-template-columns: 80px auto;
+    direction: ltr;
+}
+
+.orderItemImage {
+    height: 100%;
+    width: 80px;
+    object-fit: contain;
+}
+
+.orderItemInfo {
+    padding-left: 10px;
+}
+
+.orderItem p {
+    font-size: 12px;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.orderItemTotalPrice {
+    display: inline-block;
+    color: #1fad83;
+    font-size: 14px;
+}
+
+.orderItemCount {
+    display: inline-block;
+    color: #bfbfbf;
+}
+
+.orderItemShopName {
+    color: #bfbfbf;
+}
+
+.deleteOrderItem {
+    color: white;
+    font-size: 24px;
+    position: relative;
+    float: right;
+    bottom: -5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.deleteOrderItem:hover {
+    color: #ea1910;
+}
+
+#shopCartTotal {
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    bottom: 0;
+    border-top: solid 1px #cccccc;
+    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 70% 20%;
+}
+
+#shopCartTotal > div > p {
+    margin: 5px 0 0 0;
+    color: #b2b2b2
+}
+
+#shopCartTotal > div > h3 {
+    margin: 2px 0 8px 0;
+    color: #00cc66
+}
+
+#shopCartTotal > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: red;
+    width: 80px;
+    height: 40px;
+    margin: auto;
+    border-radius: 3px;
+}
+
+/*  Account Menu  */
+.AccountMenu {
+    width: 400px;
+    height: 0;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+}
+
+.AccountMenuActive {
+    height: 60%;
+}
+
+#AccountMenuHead {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#Username {
+    font-size: 22px;
+    display: inline-block;
+}
+
+#closeAccountMenu {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#AccountMenuCartContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.AccountMenuCart {
+    border: solid 1px white;
+    color: white;
+    width: 100px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.AccountMenuCart:hover {
+    border-color: #00cc66;
+    color: #00cc66;
+}
+
+#notLoggedAccountMenuContent {
+    margin: 10% 0 auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+/* Authentication Buttons */
+
+.outlineButton {
+    display: block;
+    border-radius: 2px;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#LoginButton {
+    border-color: rgb(42, 177, 8);
+    color: rgb(42, 177, 8);
+    width: 80px;
+    height: 40px;
+    margin: 20px auto auto auto;
+}
+
+#LoginButton:hover {
+    color: white;
+    background-color: rgb(42, 177, 8);
+}
+
+#RegisterButton {
+    border-color: rgb(14, 141, 201);
+    color: rgb(14, 141, 201);
+    width: 80px;
+    height: 40px;
+    margin: 20px auto auto auto;
+}
+
+#RegisterButton:hover {
+    color: white;
+    background-color: rgb(14, 141, 201);
+}
+
+#LogoutButton {
+    float: right;
+    border-color: rgb(219, 44, 28);
+    color: rgb(219, 44, 28);
+    width: 60px;
+    height: 30px;
+    margin: 0 5px 0 0;
+}
+
+#LogoutButton:hover {
+    background-color: rgb(219, 44, 28);
+    color: white;
+}
+
+
+/* ############################# footer ############################# */
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(2, 182, 95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.socialMediaIcons {
+    width: 20px;
+    height: 20px;
+}
+
+.footerLinks {
+    margin-right: 20px;
+}

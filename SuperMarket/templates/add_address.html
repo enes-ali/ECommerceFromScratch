@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Address</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_address.css' %}">
+</head>
+<body>
+
+<div id="cart">
+    <h1>Add Address</h1>
+    <div id="underline"></div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}"> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div style="width: 100%; display: flex; justify-content: center">
+            <button id="SubmitButton">Add Address</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+* {
+    font-family: "Raleway Thin", sans-serif;
+}
+
+html {
+    background: -webkit-linear-gradient(bottom, #2751bd, #11cdc3) no-repeat;
+    min-height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    width: fit-content;
+    flex-direction: column;
+    margin-top: -60px;
+}
+
+.typeCart {
+    color: #000000;
+    text-decoration: none;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 2px #7a7a7a;
+    width: 200px;
+    height: 250px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.typeCart:hover {
+    color: #00cc66;
+    border: solid 1px #00cc66;
+    box-shadow: 0 0 4px 2px #00cc66;
+}
+
+.typeCart > i {
+    font-size: 80px;
+}

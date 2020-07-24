@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Product</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/new_product.css' %}">
+</head>
+<body>
+
+<div id="container">
+    <h1 id="PageTitle">Add New Product</h1>
+    <div id="underline"></div>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form }}
+        <div style="display: flex; justify-content: center"> <button id="SubmitButton">Sell</button> </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}"> {{ message }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

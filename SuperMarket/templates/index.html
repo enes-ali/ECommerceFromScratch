@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>djECommerce Home</title>
+    <link rel="stylesheet" href="{% static  'css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id="Main">
+
+        <div id="SlideImageContainer">
+            <span class="material-icons slideButton" id="SlideBefore">keyboard_arrow_left</span>
+            <div class="SlideImages">
+                <div id="SlideDotCup">
+                    <div class="slideDotes Activedot" id="1"></div>
+                    <div class="slideDotes" id="2"></div>
+                    <div class="slideDotes" id="3"></div>
+                    <div class="slideDotes" id="4"></div>
+                    <div class="slideDotes" id="5"></div>
+                </div>
+            </div>
+            <span class="material-icons slideButton" id="SlideAfter">keyboard_arrow_right</span>
+        </div>
+
+        <div id="MainContent">
+
+            <div id="CategoriesNav">
+                <p style="font-size: 20px;">Categories:</p>
+                <ul id="CategoryList">
+                    <li class="CategoryIndex"><a href="{% url 'home' %}" id="ActiveCategoryIndex"> All </a></li>
+                    <li class="CategoryIndex"><a href="?category=Sports"> Sports </a></li>
+                    <li class="CategoryIndex"><a href="?category=Fashion"> Fashion </a></li>
+                    <li class="CategoryIndex"><a href="?category=Home"> Home </a></li>
+                    <li class="CategoryIndex"><a href="?category=Hobby"> Hobby </a></li>
+                    <li class="CategoryIndex"><a href="?category=Electronic"> Electronic </a></li>
+                    <li class="CategoryIndex"><a href="?category=Cosmetic"> Cosmetic </a></li>
+                    <li class="CategoryIndex"><a href="?category=Toys"> Toys </a></li>
+                    <li class="CategoryIndex"><a href="?category=Backyard"> Backyard </a></li>
+                </ul>
+
+                <form id="SearchForm" method="get">
+                    <input type="text" placeholder="Search" name="q">
+                </form>
+            </div>
+
+            <div class="ProductShowcase">
+                {% for product in showcase %}
+                    <a class="ProductCard" href="{% url 'productDetail' id=product.id %}">
+                        <img src="{{ product.Photo1.url }}" alt="" class="Pro">
+                        <div class="ProductInfo">
+                            <p class="ProductStore">{{ product.Shop.ShopName }}</p>
+                            <strong>
+                                <p class="ProductName">{{ product.Name }}</p>
+                            </strong>
+                            <strong>
+                                <p class="ProductPrice"> {{ product.Price }}$</p>
+                            </strong>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div id="PagingContainer">
+                <a class="material-icons pageChangeButtons" id="PreviousPage"> skip_previous </a>
+                <ul id="PageNumberContainer">
+                    <li class="PageNumber"><a href="?page=1" id="ActivePage">1</a></li>
+                    <li class="PageNumber"><a href="?page=2">2</a></li>
+                    <li class="PageNumber"><a href="?page=3">3</a></li>
+                    <li class="PageNumber"><a href="?page=4">4</a></li>
+                    <li class="PageNumber"><a href="?page=5">5</a></li>
+                </ul>
+                <a class="material-icons pageChangeButtons" id="NextPage"> skip_next </a>
+            </div>
+        </div>
+
+    </div>
+
+{#    <script>#}
+{#        // Change Color Mode#}
+{#        let colorModeButton = document.querySelector("#colorMode");#}
+{#        let isActive = false;#}
+{#        colorModeButton.addEventListener("click", (event) => {#}
+{#            let activeCss = document.querySelectorAll("link");#}
+{##}
+{#            if (!isActive) {#}
+{#                activeCss[0].setAttribute("href", "{% static "css/index-dark.css" %}");#}
+{#                activeCss[1].setAttribute("href", "{% static "css/base-dark.css" %}");#}
+{#                isActive = true;#}
+{#            } else {#}
+{#                activeCss[0].setAttribute("href", "{% static "css/index.css"%}");#}
+{#                activeCss[1].setAttribute("href", "{% static "css/base.css"%}");#}
+{#                isActive = false;#}
+{#            }#}
+{#        });#}
+{#    </script>#}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

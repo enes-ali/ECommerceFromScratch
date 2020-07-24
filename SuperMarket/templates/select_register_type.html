@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Account Type</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/select_register_type.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<div id="container" class="centered">
+
+    <h1 style="color: white">Select Account Type</h1>
+
+    <div class="centered">
+        <a class="typeCart centered" href="{% url 'shopRegister' %}">
+            <i class="material-icons">storefront</i>
+            Shop
+        </a>
+
+        <a class="typeCart centered" href="{% url 'customerRegister'%}">
+            <i class="material-icons">person_outline</i>
+            Customer
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

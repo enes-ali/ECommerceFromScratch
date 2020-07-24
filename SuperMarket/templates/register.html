@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+
+<div id="cart">
+    <h1>REGISTER</h1>
+    <div id="underline"></div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}"> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <a href="{% url 'login' %}">Do You Have Account?</a>
+        <div style="width: 100%; display: flex; justify-content: center">
+            <button id="SubmitButton">Register</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

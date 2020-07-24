@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %} <title>Document</title> {% endblock %}
+    <link rel="stylesheet" href=" {% static 'css/base.css' %} ">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ############################# Navigation Bar ############################# -->
+
+<nav class="Navbar">
+    <!-- Brand  -->
+    <div href="{% url 'home' %}">
+        <a href="{% url 'home' %}" id="Brand">djECommerce</a>
+
+        <!-- Navigation -->
+        <ul id="NavLinkList">
+            <li><a href="#" class="Navlink" id="ActiveNavlink">Home</a></li>
+            <li><a href="#" class="Navlink">About</a></li>
+            <li><a href="#" class="Navlink">Categories</a></li>
+            <li><a href="#" class="Navlink">Discounts</a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation Bar Buttons -->
+    <div id="NavButtonsContainer">
+        <button id="OpenShop" class="NavbarButtons">
+            {% if shopCart.items.count %}
+                <div id="shopCartBadge">{{ shopCart.items.count }}</div>
+            {% endif %}
+            <i class="material-icons">shopping_cart</i>Cart
+        </button>
+        <button id="OpenUser" class="NavbarButtons"><i class="material-icons">account_circle</i> Account</button>
+{#        <button id="colorMode" class="NavbarButtons" style="font-size: 13px">#}
+{#            <i class="material-icons" style="vertical-align: text-top">brightness_4</i>Beta#}
+{#        </button>#}
+
+    </div>
+</nav>
+
+
+<!-- ############################# Dropdown Menus ############################# -->
+
+<!-- Shop Cart Menu -->
+<div class="ShopCartMenu dropdownMenu">
+
+    <div class="ShopMenuContent">
+        <div id="ShopCartHeader">
+            <p></p> <!-- for centerize "Shop Cart" Title in flexbox -->
+            <p id="shopCartTitle">Shop Cart</p>
+            <i class="material-icons" id="closeShopCart">close</i>
+        </div>
+
+        {% if shopCart.items.all %}  <!-- check orders -->
+            <div id="orderItemContainer">
+                {% for item in shopCart.items.all %}
+                    <div class="orderItem">
+                        <img class="orderItemImage" src="{{ item.product.Photo2.url }}" alt="">
+                        <div class="orderItemInfo">
+                            <p>{{ item.product.Name }}</p>
+                            <p class="orderItemShopName">{{ item.product.Shop.ShopName }}</p>
+                            <p class="orderItemCount">{{ item.count }} piece</p>
+                            <strong>
+                                <p class="orderItemTotalPrice"> {{ item.totalPrice }}$ </p>
+                            </strong>
+                            <a href="{% url 'deleteOrderItem' id=item.id %}" class="deleteOrderItem material-icons">delete_forever</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div id="shopCartTotal">
+            <div>
+                <p>Total:</p>
+                <h3>{{ shopCart.totalPrice }}$</h3>
+            </div>
+            <a href="{% url 'shopCart' %}">Buy All</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Account Menu -->
+<div class="AccountMenu dropdownMenu">
+
+    <div class="AccountMenuContent">
+        {% if request.user.is_authenticated %}
+            <div id="AccountMenuHead">
+                <i class="material-icons" id="closeAccountMenu">close</i>
+                <span id="Username"> {{ request.user.username }}</span>
+                <a id="LogoutButton" class="outlineButton" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div id="AccountMenuCartContainer">
+                <a href="{% url 'shopCart' %}" class="AccountMenuCart">
+                    <i class="material-icons" style="margin-left: auto; margin-right: auto; display: block">shopping_cart</i>
+                    <p>Shop Cart</p>
+                </a>
+
+                <a href="{% url 'purchasedOrders' %}" class="AccountMenuCart">
+                    <img src="{% static 'images/shipping_white.png' %}" alt="" style="width: 50px">
+                    <p>Orders</p>
+                </a>
+
+                {% if account.ShopName %}
+                    <a class="AccountMenuCart" href="{% url 'orderRequests' %}">
+                        <img src="{% static 'images/sells_white.png' %}" alt="" style="width: 50px">
+                        <p>Sells</p>
+                    </a>
+
+                    <a href="{% url 'newProduct' %}" class="AccountMenuCart">
+                        <i class="material-icons">add</i>
+                        <p>Sell</p>
+                    </a>
+                {% endif %}
+
+
+                <div class="AccountMenuCart">
+                    <i class="material-icons">account_circle</i>
+                    <p>Account</p>
+                </div>
+
+                <div class="AccountMenuCart">
+                    <i class="material-icons">settings</i>
+                    <p>Settings</p>
+                </div>
+
+            </div>
+
+        {% else %}
+            <div id="AccountMenuHead">
+                <i class="material-icons" id="closeAccountMenu">close</i>
+            </div>
+            <div id="notLoggedAccountMenuContent">
+                <h3>You Did Not Logged In</h3>
+                <a id="LoginButton" class="outlineButton" href="{% url 'login' %}">Login</a>
+                <a id="RegisterButton" class="outlineButton" href="{% url 'selectRegister' %}">Register</a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+
+{% block body %}
+{% endblock %}
+
+<footer>
+    <a href="" class="footerLinks"><img class="socialMediaIcons" src="{% static 'images/social media/facebook.png' %}"
+                                        alt=""></a>
+    <a href="" class="footerLinks"><img class="socialMediaIcons" src="{% static 'images/social media/instagram.png' %}"
+                                        alt=""></a>
+    <a href="" class="footerLinks"><img class="socialMediaIcons" src="{% static 'images/social media/linkedin.png' %}"
+                                        alt=""></a>
+    <a href="" class="footerLinks"><img class="socialMediaIcons" src="{% static 'images/social media/twitter.png' %}"
+                                        alt=""></a>
+    <a href="" class="footerLinks"><img class="socialMediaIcons" src="{% static 'images/social media/whatsapp.png' %}"
+                                        alt=""></a>
+</footer>
+
+
+<script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

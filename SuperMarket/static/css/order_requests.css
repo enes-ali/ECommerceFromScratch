@@ -1,0 +1,132 @@
+/*generals*/
+#Main {
+    width: 90%;
+    margin: 60px auto 0 auto;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* delete spinner (Chrome, Safari, Edge, Opera) */
+.nonSpin::-webkit-inner-spin-button,
+.nonSpin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* delete spinner (Firefox ) */
+.nonSpin {
+    -moz-appearance: textfield;
+}
+
+
+/*TITLES*/
+#orderLabelList {
+    display: grid;
+    list-style-type: none;
+    grid-template-columns: 8% 13% 28% 13% 14% 7% 9% 8%;
+    padding: 0;
+    height: 40px;
+}
+
+.orderLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: solid 1px #515151;
+    background-color: #f1f1f1;
+}
+
+.orderCartItem {
+    display: grid;
+    grid-template-columns: 8% 13% 28% 13% 14% 7% 9% 8%;
+    margin: 20px 0 40px 0;
+}
+
+.refuseOrder {
+    font-size: 30px !important;
+    margin: auto;
+}
+
+.refuseOrder:hover {
+    color: red;
+}
+
+.orderCartItemImage {
+    width: 80%;
+    margin: 0 auto 0 auto;
+}
+
+.orderCartItemName {
+
+}
+
+.orderCartItemPrice {
+
+}
+
+.orderCartItemCount {
+
+}
+
+.orderCartItemTotalPrice {
+    color: #00b35a;
+    font-weight: bold;
+}
+
+
+.confirmOrder {
+    font-size: 30px !important;
+    margin: auto;
+}
+
+.confirmOrder:hover {
+    color: #00cc66;
+}
+
+.sendOrder {
+    font-size: 30px !important;
+    margin: auto;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.sendOrder:hover {
+    color: #ff6011;
+}
+
+/*CONFIRMEDS*/
+
+#confirmedOrderLabelList {
+    display: grid;
+    list-style-type: none;
+    grid-template-columns: 13% 25% 13% 14% 7% 9% 12% 8%;
+    padding: 0;
+
+    height: 40px;
+}
+
+.confirmedOrderCartItem {
+    display: grid;
+    grid-template-columns: 13% 25% 13% 14% 7% 9% 12% 8%;
+    margin: 20px 0 40px 0;
+}
+
+
+#ShippedOrderLabelList {
+    display: grid;
+    list-style-type: none;
+    grid-template-columns: 14% 15% 28% 13% 14% 7% 9%;
+    padding: 0;
+    height: 40px;
+}
+
+.ShippedOrderCartItem {
+    display: grid;
+    grid-template-columns: 14% 15% 28% 13% 14% 7% 9%;
+    margin: 20px 0 40px 0;
+}

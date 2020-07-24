@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Shop Cart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/shopCart.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div id="Main">
+
+        <div id="ShopCartContainer">
+            <h1>Cart</h1>
+
+            {% if cart.items.all %}  <!-- check orders -->
+                <div id="orderContainer">
+
+                    <ul id="orderLabelList">
+                        <li class="orderLabel">Delete</li>
+                        <li class="orderLabel">Image</li>
+                        <li class="orderLabel">Product</li>
+                        <li class="orderLabel">Price</li>
+                        <li class="orderLabel">Quantity</li>
+                        <li class="orderLabel">Total</li>
+
+                    </ul>
+
+                    {% for item in cart.items.all %}
+                        <div class="shopCartItem">
+
+                            <a href="{% url 'deleteOrderItem' id=item.id %}" class="deleteShopCartItem material-icons">delete_forever</a>
+
+                            <img class="shopCartItemImage" src="{{ item.product.Photo2.url }}" alt="">
+
+
+                            <p class="shopCartItemName centered">{{ item.product.Name }}</p>
+
+                            {# <p class="orderItemInfo">{{ item.product.Shop.ShopName }}</p>#}
+
+                            <p class="shopCartItemPrice centered">{{ item.product.Price }}$</p>
+
+                            <p class="shopCartItemCount centered">{{ item.count }}</p>
+
+
+                            <p class="shopCartItemTotalPrice centered"> {{ item.totalPrice }}$ </p>
+
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div id="InfoContainer">
+
+            <div id="orderSummery">
+
+                <h3>ORDER SUMMARY</h3>
+
+                <div id="orderSummeryInfo">
+
+                    <div class="orderSummeryInfoIndex">
+                        <span>Total Price</span>
+                        <span>{{ cart.totalPrice }}$</span>
+                    </div>
+
+                    <div class="orderSummeryInfoIndex">
+                        <span>Shop Discounts</span>
+                        <span>0$</span>
+                    </div>
+
+                    <div class="orderSummeryInfoIndex">
+                        <span>Extra Discounts</span>
+                        <span>0$</span>
+                    </div>
+
+                    <div id="separator"></div>
+
+                    <div class="orderSummeryInfoIndex" style="font-weight: bold">
+                        <span>Total Price</span>
+                        <span>{{ cart.totalPrice }}$</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="CreditCard">
+                <div id="CreditCardMain">
+                    <h3>Credit Cart</h3>
+                    <img id="CreditCardChipIcon" src="{% static 'images/creditCartChip.png' %}" alt="">
+                    <input type="number" max="9999999999999999" id="CreditCardNumber" class="nonSpin"
+                           placeholder="1234 5678 9012 3456">
+                    <p id="botNum">1234</p>
+
+                    <div id="CreditCardBottom">
+                        <input type="text" id="CreditCardNameSurname" placeholder="Name Surname">
+
+                        <div id="cardExpiration">
+                            <div>
+                                <p style="margin: 0; padding: 0; text-align: center; color: #c1c1c1">VALID</p>
+                                <p style="margin: 0; padding: 0; text-align: center; color: #c1c1c1">THRU</p>
+                            </div>
+                            <pre> > </pre>
+                            <input type="number" class="nonSpin" placeholder="Mon">
+                            <span>/</span>
+                            <input type="number" class="nonSpin" placeholder="Year">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="CreditCard" style="padding-top: 20px; box-sizing: border-box">
+
+                <div id="CreditCardBlackLine"></div>
+                <div style="margin: 10px 0 0 10px; display: flex">
+                    <div id="CreditCardWhiteLine"></div>
+                    <input id="backNum" type="number" class="nonSpin" placeholder="Num">
+                </div>
+            </div>
+
+           <a id="BuyButton" class="centered" href="{% url 'buyOrders' %}">Buy All</a>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/shopCart.js' %}"></script>
+
+{% endblock %}

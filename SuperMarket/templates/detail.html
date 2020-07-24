@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <title>{{ product.Name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static  'css/detail.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id="Main">
+
+        <div id="product">
+            <!-- ######## Image  ######## -->
+            <div id="ImageContainer">
+                <img src="{{ product.Photo1.url }}" alt="" id="BigImage">
+                <div id="MiniImageContainer">
+                    <img src="{{ product.Photo1.url }}" alt="" class="miniImages ActiveImage">
+                    <img src="{{ product.Photo2.url }}" alt="" class="miniImages">
+                    <img src="{{ product.Photo3.url }}" alt="" class="miniImages">
+                    <img src="{{ product.Photo4.url }}" alt="" class="miniImages">
+                    <img src="{{ product.Photo5.url }}" alt="" class="miniImages">
+                </div>
+            </div>
+
+
+            <div>
+                <!-- ### Texts ### -->
+                <strong><p id="productTitle">{{ product.Name }}</p></strong>
+                <p id="productShop" style="color: #2c2c2c!important;">{{ product.Brand }}</p>
+                <p id="productShop">{{ product.Shop }}</p>
+
+                <div id="rating">
+                    <span class="fa fa-star checkedRate"></span>
+                    <span class="fa fa-star checkedRate"></span>
+                    <span class="fa fa-star checkedRate"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <button id="ReadComments">Read Comments</button>
+
+
+                <div id="seperator"></div> <!-- line -->
+
+
+                <!-- ### Form ### -->
+                <form action="" id="buyForm" method="post">
+                    {% csrf_token %}
+                    <label for="count">Count:</label>
+                    <input type="number" id="count" name="count" value="1">
+                    <p id="productPrice">{{ product.Price }}$</p>
+                    <input id="addressField" name="address" type="number" style="display: none" required>
+{#                    <button id="buyButton">Buy</button>#}
+                    <button id="addToCart"> Add To Cart</button>
+                </form>
+            </div>
+
+
+            <!-- ### Address ### -->
+            <div>
+                <h3 style="text-align: center; margin-top: 0;">Address</h3>
+                {% if account.addresses.all %}
+                    <div id="AddressCartContainer">
+                        {% for address in account.addresses.all %}
+                            <div class="AddressCard" id="{{ address.id }}">
+                                <h4 class="AddressName">{{ address.Name }}</h4>
+                                <p>{{ address.country }}</p>
+                                <p>{{ address.city }}</p>
+                                <p>{{ address.town }}</p>
+                            </div>
+                        {% endfor %}
+                        <a id="addAddress" href="{% url 'addAddress' %}"><i class="material-icons" style="font-size: 90px">add</i></a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div id="pageBottom">
+
+            <div id="leftSide">
+                <h3>DESCRIPTION</h3>
+                <div id="rightUnderline"></div>
+                <div id="productDescription">
+                    <div id="descriptionText">
+                        {{ product.Description|safe }}
+                    </div>
+                </div>
+            </div>
+
+            <div id="rightSide">
+                <h3>COMMENTS</h3>
+                <div id="leftUnderline"></div>
+
+                <form action="{% url 'makeComment' id=product.id %}" method="post" id="commentForm">
+                    {% csrf_token %}
+                    <h2>Leave A Comment</h2>
+                    <div id="formGrid">
+                        <div>
+                            <label for="">Name</label>
+                            <input type="text" name="Name">
+
+                            <label for="">Email</label>
+                            <input type="email" name="Email">
+                        </div>
+
+                        <div>
+                            <label for="text">Text</label>
+                            <textarea name="Text" id="text"></textarea>
+                        </div>
+                    </div>
+                    <button>Comment</button>
+                </form>
+
+                <div id="commentContainer">
+                    {% for comment in comments %}
+
+                        <div class="comment">
+                            <i class="material-icons" style="font-size: 50px">account_circle</i>
+                            <div class="commentInfos">
+                                <p class="commentTitle">{{ comment.Name }} · {{ comment.Date }}</p>
+                                <div>
+                                    {{ comment.Text }}
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="{% static 'js/detail.js' %}"></script>
+{% endblock %}

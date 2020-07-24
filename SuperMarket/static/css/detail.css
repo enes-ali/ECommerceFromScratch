@@ -1,0 +1,287 @@
+#Main {
+    margin-top: 60px;
+}
+
+#product {
+    display: grid;
+    grid-template-columns: 33% 30% 37%;
+    margin: 0px 20px 0px 20px;
+}
+
+/* ### Images ###*/
+#ImageContainer {
+    width: fit-content;
+}
+
+#BigImage {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 400px;
+    width: 400px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border: solid 1px #9f9f9f;
+}
+
+.miniImages {
+    float: left;
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    margin-right: 10px;
+    border: solid 1px #9f9f9f;
+}
+
+.miniImages:hover {
+    border-color: black;
+    cursor: pointer;
+}
+
+.ActiveImage {
+    border-color: black;
+}
+
+/* ### Texts ###*/
+#productTitle {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+#productShop {
+    padding: 0;
+    margin: 5px 0 5px 0;
+    color: rgba(143, 143, 143, 0.99);
+}
+
+#rating {
+    display: inline;
+}
+
+.checkedRate {
+    color: #ffc514;
+}
+
+#ReadComments {
+    background-color: transparent;
+    border: none;
+    color: #4355e9;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#ReadComments:hover {
+    text-decoration: underline;
+}
+
+
+#seperator {
+    background-color: #949494;
+    width: 95%;
+    height: 1px;
+    margin-top: 15px;
+}
+
+
+/* ### Buy Form ###*/
+
+#count {
+    margin-left: 50px;
+    margin-top: 8px;
+    width: 50px;
+    height: 20px;
+}
+
+#productPrice {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 26px;
+    color: #202020
+}
+
+/*#buyButton {*/
+/*    background-color: #3AC62B;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: 2px;*/
+/*    width: 130px;*/
+/*    height: 40px;*/
+/*    display: inline;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*#buyButton:active {*/
+/*    background-color: #206e18;*/
+/*}*/
+
+#addToCart {
+    background-color: #3AC62B;
+    border: none;
+    border-radius: 2px;
+    width: 90%;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+#addToCart:active {
+    background-color: #898d97;
+}
+
+
+/* ### Address ###*/
+
+#AddressCartContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.AddressCard {
+    width: 140px;
+    height: 100px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 1px #9c9c9c;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.AddressCard > p, .AddressName {
+    margin: 2px;
+}
+
+
+.SelectedAddressCard {
+    border: solid 1px #00cc66;
+    color: #009149;
+    box-shadow: 0 0 4px 1px #00cc66;
+}
+
+.AddressName {
+
+}
+
+#addAddress {
+    width: 140px;
+    height: 100px;
+    color: #00cc66;
+    font-size: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ### Description ###*/
+
+#productDescription {
+    width: 100%;
+    box-shadow: 2px 4px 2px 2px #bfbfbf;
+}
+
+#productDescription img {
+    max-width: 100%;
+    margin: auto;
+}
+
+#descriptionText {
+    padding: 5px 20px 10px 20px;
+}
+
+#pageBottom {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    margin: 40px 20px 40px 20px;
+}
+
+#pageBottom > div > h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 25px;
+}
+
+#leftUnderline {
+    margin: auto;
+    background: -webkit-linear-gradient(right, #15f79b, #3dbfc0);
+    width: 170px;
+    height: 2px;
+}
+
+
+/* ### Comments ### */
+#rightUnderline {
+    margin: auto;
+    background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+    width: 200px;
+    height: 2px;
+}
+
+#rightSide {
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+#commentForm {
+    background-color: #E4F1F7;
+    border: solid 4px #bbd5d5;
+    height: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+#formGrid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 20px;
+}
+
+#formGrid > div > label {
+    display: block;
+}
+
+#formGrid > div > input {
+    border: solid 1px #c8c8c8;
+    border-radius: 3px;
+    width: 90%;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+#formGrid > div > textarea {
+    width: 90%;
+    height: 80%;
+    resize: none;
+    border: solid 1px #c8c8c8;
+    border-radius: 3px;
+}
+
+#commentForm > button {
+    width: 100px;
+    height: 40px;
+    background-color: #339BCE;
+    border: solid 2px #3cb7f3;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: 10% 80%;
+    margin: 20px 0 0 0;
+}
+
+.commentInfos {
+    border-bottom: solid 2px #e8e8e8;
+    padding-bottom: 10px;
+}
+
+.commentTitle {
+    margin: 10px 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
